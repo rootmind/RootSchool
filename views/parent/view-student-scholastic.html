@@ -1,0 +1,69 @@
+<div class="layout-content-body">
+    <div class=" row gutter-xs">
+        <!-- <div class="col-xs-12">
+            <p><small>The tables presented below use <a href="https://datatables.net/extensions/responsive/" target="_blank">DataTables Responsive Extension</a>, the styling of which is completely rewritten in SASS, without modifying however anything in JavaScript.</small></p>
+          </div> -->
+
+    </div>
+    <div class="row gutter-xs">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body"> 
+                    <div class="form-group">
+                        <!-- <form name="loginForm" class="login-form" ng-submit="doAdd();" novalidate> -->
+                            <!-- <div class="col-xs-4">
+                                <div class="input-with-icon">
+                                    <input class="form-control" type="text" placeholder="Student ID or Name"
+                                        ng-model="studentID" maxlength="20" id="studentID" name="studentID">
+                                    <span class="icon icon-search input-icon"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <select class="custom-select" id="grade" name="grade" ng-model="grade"
+                                    ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Grade'}"
+                                    class="form-control" required>
+                                    <option value="" selected="">Grade</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3">
+                                <select class="custom-select" id="sectionID" name="sectionID" ng-model="sectionID"
+                                    ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_SECTION'}"
+                                    class="form-control" required>
+                                    <option value="" selected="">Section</option>
+                                </select>
+                            </div> -->
+                            <!-- <div class="col-xs-2 pull-right">
+                                <div class="text-center">
+                                    <button class="btn btn-primary btn-block" type="submit">Add</button>
+                                </div>
+                            </div> -->
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--table-->
+    <div class="row gutter-xs">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-actions">
+                        <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                        <button type="button" class="card-action card-reload" title="Reload"></button>
+                        <!-- <button type="button" class="card-action card-remove" title="Remove"></button> -->
+                    </div>
+                    <strong>Student Scholastic</strong>
+                </div>
+                <div class="card-body">
+                    <table datatable class="table table-bordered table-striped table-nowrap dataTable"
+                        dt-columns="dt.columns" dt-options="dt.options" dt-instance="dt.dtInstance"
+                        cellspacing="0" width="100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end of table-->
+</div><!-- /.layout-content-body -->

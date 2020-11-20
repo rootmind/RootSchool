@@ -1,0 +1,224 @@
+<div class="modal-header" ng-init="loadData()">
+    <button type="button" class="close" ng-click="$ctrl.cancel()">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <!--form starts-->
+    <div class="login">
+        <div class="login-body">
+            <h3 class="login-heading">Book Issue</h3>
+            <div class="login-form">
+                <form name="loginForm" class="login-form" ng-submit="saveData()" novalidate>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+
+                            <!--row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="issueRefNo">Issue Ref No</label>
+                                    <input ng-model="wrapper.issueRefNo" id="issueRefNo" class="form-control"
+                                        type="text" name="issueRefNo" disabled>
+                                    <!-- <div ng-show="loginForm.$submitted || loginForm.targetMarks.$touched">
+                                            <small ng-show="loginForm.targetMarks.$error.required"
+                                                class="has-error help-block">Please
+                                                enter target marks</small>
+                                        </div> -->
+                                </div>
+                                <!-- <div class="col-xs-4">
+                                    <label for="bookID">Book ID</label>
+                                    <input ng-model="wrapper.bookID" id="bookID" class="form-control" type="text"
+                                        name="bookID" spellcheck="false" autocomplete="off" maxlength="20" required>
+                                    <div ng-show="loginForm.$submitted || loginForm.bookID.$touched">
+                                        <small ng-show="loginForm.bookID.$error.required"
+                                            class="has-error help-block">Please
+                                            enter book id</small>
+                                    </div>
+                                </div> -->
+                                <div class="col-xs-4">
+                                    <label for="bookID">Book</label>
+                                    <ui-select ng-model="currentBook.selected" id="bookID"
+                                        on-select="updateBookCatalog($item, $model)" theme="bootstrap" ng-disabled="codeDisabled">
+                                        <ui-select-match placeholder="Select book">
+                                            {{$select.selected.bookID}} - {{$select.selected.bookName}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="bookCatalog in bookCatalogueWrapper | filter: $select.search">
+                                            {{bookCatalog.bookID}} - {{bookCatalog.bookName}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <div ng-show="loginForm.$submitted || loginForm.bookID.$touched">
+                                        <small ng-show="loginForm.bookID.$error.required"
+                                            class="has-error help-block">Please
+                                            select book id</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="bookName">Book Name</label>
+                                    <input ng-model="wrapper.bookName" id="bookName" class="form-control" type="text"
+                                        name="bookName" spellcheck="false" autocomplete="off" maxlength="150" disabled>
+                                    <div ng-show="loginForm.$submitted || loginForm.bookName.$touched">
+                                        <small ng-show="loginForm.bookName.$error.required"
+                                            class="has-error help-block">Please
+                                            enter book name</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------>
+
+
+                            <!--row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="studentID">Student ID</label>
+                                    <input ng-model="wrapper.studentID" id="studentID" class="form-control" type="text"
+                                        name="studentID" spellcheck="false" autocomplete="off" maxlength="20" required>
+                                    <div ng-show="loginForm.$submitted || loginForm.studentID.$touched" >
+                                        <small ng-show="loginForm.studentID.$error.required"
+                                            class="has-error help-block">Please
+                                            enter student id</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="studentName">Student Name</label>
+                                    <input ng-model="wrapper.studentName" id="studentName" class="form-control"
+                                        type="text" name="studentName" spellcheck="false" autocomplete="off"
+                                        maxlength="150" disabled>
+                                    <div ng-show="loginForm.$submitted || loginForm.studentName.$touched">
+                                        <small ng-show="loginForm.studentName.$error.required"
+                                            class="has-error help-block">Please
+                                            enter student name</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="bookStatus">Book Status</label>
+                                    <select class="custom-select" id="bookStatus" name="bookStatus"
+                                        ng-model="wrapper.bookStatus"
+                                        ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_BookStatus'}"
+                                        class="form-control" required>
+                                        <option value="" selected="">Select</option>
+                                    </select>
+                                    <div ng-show="loginForm.$submitted || loginForm.bookStatus.$touched">
+                                        <small ng-show="loginForm.bookStatus.$error.required"
+                                            class="has-error help-block">Please
+                                            select book status</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------>
+
+
+                            <!--row 3-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="issueDate">Issue Date</label>
+                                    <div class="input-with-icon">
+                                        <input id="issueDate" name="issueDate" class="form-control" type="text"
+                                            ng-model="wrapper.issueDate" ng-focus="open($event,'issueDate')"
+                                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.issueDate"
+                                            show-button-bar="false" datepicker-options="datepicker.options" required>
+                                        <span class="icon icon-calendar input-icon"></span>
+                                    </div>
+                                    <div ng-show="loginForm.$submitted || loginForm.issueDate.$touched">
+                                        <small ng-show="loginForm.issueDate.$error.required"
+                                            class="has-error help-block">Please
+                                            select issue date</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="returnDate">Return Date</label>
+                                    <div class="input-with-icon">
+                                        <input id="returnDate" name="returnDate" class="form-control" type="text"
+                                            ng-model="wrapper.returnDate" ng-focus="open($event,'returnDate')"
+                                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.returnDate"
+                                            show-button-bar="false" datepicker-options="datepicker.options">
+                                        <span class="icon icon-calendar input-icon"></span>
+                                    </div>
+                                    <div ng-show="loginForm.$submitted || loginForm.returnDate.$touched">
+                                        <small ng-show="loginForm.returnDate.$error.required"
+                                            class="has-error help-block">Please
+                                            select return date</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="dueDays">Due Days</label>
+                                    <input ng-model="wrapper.dueDays" id="dueDays" class="form-control" type="text"
+                                        name="dueDays" spellcheck="false" autocomplete="off" maxlength="3">
+                                    <div ng-show="loginForm.$submitted || loginForm.dueDays.$touched">
+                                        <small ng-show="loginForm.dueDays.$error.required"
+                                            class="has-error help-block">Please
+                                            enter due days</small>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!------>
+
+                            <!--row 4-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="lateFine">Late Fine</label>
+                                    <input ng-model="wrapper.lateFine" id="lateFine" class="form-control" type="text"
+                                        name="lateFine" spellcheck="false" autocomplete="off" maxlength="3"
+                                        data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'">
+                                    <div ng-show="loginForm.$submitted || loginForm.lateFine.$touched">
+                                        <small ng-show="loginForm.lateFine.$error.required"
+                                            class="has-error help-block">Please
+                                            enter late fine</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="damageFine">Damage Fine</label>
+                                    <input ng-model="wrapper.damageFine" id="damageFine" class="form-control"
+                                        type="text" name="damageFine" spellcheck="false" autocomplete="off"
+                                        maxlength="3"
+                                        data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'">
+                                    <div ng-show="loginForm.$submitted || loginForm.damageFine.$touched">
+                                        <small ng-show="loginForm.damageFine.$error.required"
+                                            class="has-error help-block">Please
+                                            enter damage fine</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="totalFine">Total Fine</label>
+                                    <input ng-model="wrapper.totalFine" id="totalFine" class="form-control" type="text"
+                                        name="totalFine" spellcheck="false" autocomplete="off" maxlength="3"
+                                        data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '$ ', 'placeholder': '0'">
+                                    <div ng-show="loginForm.$submitted || loginForm.totalFine.$touched">
+                                        <small ng-show="loginForm.totalFine.$error.required"
+                                            class="has-error help-block">Please
+                                            enter total fine</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                </div>
+                                <div class="col-xs-3">
+                                    <button class="btn btn-primary btn-block" type="submit">Save</button>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button class="btn btn-default btn-block" type="button"
+                                        ng-click="$ctrl.cancel()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!---form ends-->
+</div>
+<div class="modal-footer"></div>

@@ -1,0 +1,55 @@
+<div class="modal-header" ng-init="loadImage()">
+    <h3 class="login-heading">Image</h3>
+    <button type="button" class="close" ng-click="$ctrl.cancel()">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!--form starts-->
+    <div class="login">
+        <div class="login-body">
+            <h4 class="login-heading">{{wrapper.studentID}} - {{wrapper.studentName}}</h4>
+            <div class="login-form">
+                <form name="loginForm" class="login-form" ng-submit="uploadFileFirestorge()" novalidate>
+                    <div class="form-group">
+                        <div class="text-center">
+
+                            <div class="panel panel-body text-center" match-height>
+                                    <span>{{imageProgress}}</span>
+                            </div>
+
+                            <div ng-if="profileImage" class="icon-with-child">
+                                <img class="circle" width="200" height="200" ng-src="{{avatar}}" alt="">
+                                <!-- <span class="icon icon-envelope icon-child bg-primary circle sq-20"></span> -->
+                            </div>
+                            <div ng-if="!profileImage" class="icon-with-child">
+                                <img class="circle" width="200" height="200" src="img/student/empty_person.png"
+                                    alt="">
+                                <!-- <span class="icon icon-envelope icon-child bg-primary circle sq-20"></span> -->
+                            </div>
+                        </div>
+                        <input type="file" id="file" ng-model="myFile" accept="image/*" name="file" file-model="myFile"
+                            onchange="angular.element(this).scope().imageUpload(this)" multiple/>
+                        <div ng-show="loginForm.$submitted || loginForm.file.$touched">
+                            <small ng-show="loginForm.file.$error.required" class="has-error help-block">Please
+                                select file</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <button class="btn btn-primary btn-block" ng-disabled="loading" type="submit">
+                                    <span ng-show="loading"><i class="spinner spinner-inverse spinner-md"></i></span>Upload</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button class="btn btn-default btn-block" type="button"
+                                ng-click="$ctrl.cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!---form ends-->
+</div>
+<div class="modal-footer"></div>

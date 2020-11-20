@@ -1,0 +1,138 @@
+<div class="layout-content-body" ng-init="loadStudentProfile()">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>My Address</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="demo-form-wrapper">
+
+                <div class="panel panel-body" match-height>
+
+                    <!----first box-->
+                    <h4>Contact Address</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+
+                            <!--Current Address row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="address1">Address 1</label>
+                                    <input type="text" id="address1" name="address1" class="form-control"
+                                        ng-model="wrapper.address1">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="address2">Address 2</label>
+                                    <input type="text" id="address2" name="address2" class="form-control"
+                                        ng-model="wrapper.address2">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="address3">Address 3</label>
+                                    <input type="text" id="address3" name="address3" class="form-control"
+                                        ng-model="wrapper.address3">
+                                </div>
+                            </div>
+
+                            <!--Current Address row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="cityID">City</label>
+                                    <input type="text" id="cityID" name="cityID" class="form-control"
+                                        ng-model="wrapper.cityIDValue">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="districtID">District</label>
+                                    <input type="text" id="districtID" name="districtID" class="form-control"
+                                        ng-model="wrapper.districtIDValue">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="stateID">State</label>
+                                    <input type="text" id="stateID" name="stateID" class="form-control"
+                                        ng-model="wrapper.stateIDValue">
+                                </div>
+                            </div>
+
+                            <!--Current Address row 3-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="pinCode">PIN Code</label>
+                                    <input type="text" id="pinCode" name="pinCode" class="form-control"
+                                        ng-model="wrapper.pinCode">
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                    <!-----end of box one-->
+
+                    <!----second  box start-->
+                    <h4>Permanent Address</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+
+                            <!--Permanent Address row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="permAddress1">Address 1</label>
+                                    <input type="text" id="permAddress1" name="permAddress1" class="form-control"
+                                    ng-model="wrapper.permAddress1">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="permAddress2">Address 2</label>
+                                    <input type="text" id="permAddress2" name="permAddress2" class="form-control"
+                                    ng-model="wrapper.permAddress2">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="permAddress3">Address 3</label>
+                                    <input type="text" id="permAddress3" name="permAddress3" class="form-control"
+                                    ng-model="wrapper.permAddress3">
+                                </div>
+                            </div>
+
+                            <!--Permanent Address row 3-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="permCityID">City</label>
+                                    <input type="text" id="permCityID" name="permCityID" class="form-control"
+                                    ng-model="wrapper.permCityIDValue">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="permDistrictID">District</label>
+                                    <input type="text" id="permDistrictID" name="permDistrictID" class="form-control"
+                                    ng-model="wrapper.permDistrictIDValue">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="permStateID">State</label>
+                                    <input type="text" id="permStateID" name="permStateID" class="form-control"
+                                    ng-model="wrapper.permStateIDValue">
+                                </div>
+                            </div>
+
+                            <!--Permanent Address row 4-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="permPINCode">PIN Code</label>
+                                    <input type="text" id="permPINCode" name="permPINCode" class="form-control"
+                                    ng-model="wrapper.permPINCode">
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                    <!-------end of second box-->
+
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.layout-content-body -->

@@ -1,0 +1,212 @@
+<div class="modal-header" ng-init="loadData()">
+    <button type="button" class="close" ng-click="$ctrl.cancel()">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!--form starts-->
+    <div class="login">
+        <div class="login-body">
+            <h3 class="login-heading">School Fee</h3>
+
+
+
+            <!----tab starts-->
+            <div class="panel m-b-lg">
+                <uib-tabset justified="true">
+
+                    <!--Fee payment info-->
+                    <uib-tab index="0">
+                        <uib-tab-heading>
+                            <span class="icon icon-user"></span> Fee Payment
+                        </uib-tab-heading>
+
+
+                        <div class="row">
+                            <div class="login-form">
+                                <form name="loginForm" class="login-form" ng-submit="saveData()" novalidate>
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="userid">User ID</label>
+                                                <input placeholder="Enter userid" type="text" minlength="1"
+                                                    maxlength="10" id="userid" name="userid" class="form-control"
+                                                    ng-model="wrapper.userid" ng-disabled="codeDisabled">
+                                                <div ng-show="loginForm.$submitted || loginForm.userid.$touched">
+                                                    <small ng-show="loginForm.userid.$error.required"
+                                                        class="has-error help-block">Please
+                                                        enter
+                                                        userid </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="studentID">Student ID</label>
+                                                <input ng-model="wrapper.studentID" id="studentID" class="form-control"
+                                                    type="text" name="studentID" maxlength="20"
+                                                    ng-disabled="codeDisabled">
+                                                <div ng-show="loginForm.$submitted || loginForm.studentID.$touched">
+                                                    <small ng-show="loginForm.studentID.$error.required"
+                                                        class="has-error help-block">Please enter
+                                                        student
+                                                        id</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label for="studentName">Student Name</label>
+                                                <input ng-model="wrapper.studentName" id="studentName"
+                                                    class="form-control" type="text" name="studentName" minlength="1"
+                                                    maxlength="100" ng-disabled="codeDisabled">
+                                                <div ng-show="loginForm.$submitted || loginForm.studentName.$touched">
+                                                    <small ng-show="loginForm.studentName.$error.required"
+                                                        class="has-error help-block">Please
+                                                        enter student name</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="invoiceNo">Invoice No</label>
+                                                <input ng-model="wrapper.invoiceNo" id="invoiceNo" class="form-control"
+                                                    type="text" name="header" spellcheck="false" autocomplete="off"
+                                                    maxlength="20" ng-disabled="codeDisabled">
+                                                <div ng-show="loginForm.$submitted || loginForm.invoiceNo.$touched">
+                                                    <small ng-show="loginForm.invoiceNo.$error.required"
+                                                        class="has-error help-block">Please enter
+                                                        invoice no</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="feeType">Fee Type</label>
+                                                <select class="custom-select" id="feeType" name="feeType"
+                                                    ng-model="wrapper.feeType"
+                                                    ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_FeeType'}"
+                                                    class="form-control" required>
+                                                    <option value="" selected="">Select</option>
+                                                </select>
+                                                <div ng-show="loginForm.$submitted || loginForm.feeType.$touched">
+                                                    <small ng-show="loginForm.feeType.$error.required"
+                                                        class="has-error help-block">Please select fee type</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="feeAmount">Fee Amount</label>
+                                                <input ng-model="wrapper.feeAmount" id="feeAmount" class="form-control"
+                                                    type="text" name="feeAmount" spellcheck="false" autocomplete="off"
+                                                    maxlength="5" required>
+                                                <div ng-show="loginForm.$submitted || loginForm.feeAmount.$touched">
+                                                    <small ng-show="loginForm.feeAmount.$error.required"
+                                                        class="has-error help-block">Please enter fee amount</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="emailID">Payment Date</label>
+                                                <div class="input-with-icon">
+                                                    <input id="paymentDate" name="paymentDate" class="form-control"
+                                                        type="text" ng-model="wrapper.paymentDate"
+                                                        ng-focus="open($event,'paymentDate')"
+                                                        uib-datepicker-popup="dd/MM/yyyy"
+                                                        is-open="datepickers.paymentDate" show-button-bar="false"
+                                                        datepicker-options="datepicker.options" required>
+                                                    <span class="icon icon-calendar input-icon"></span>
+                                                </div>
+                                                <div ng-show="loginForm.$submitted || loginForm.paymentDate.$touched">
+                                                    <small ng-show="loginForm.paymentDate.$error.required"
+                                                        class="has-error help-block">Please
+                                                        select payment date</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <button class="btn btn-primary btn-block" type="submit">Pay</button>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <button class="btn btn-default btn-block" type="button"
+                                                    ng-click="$ctrl.cancel()">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </uib-tab>
+                    <!--end of fee payemnt info-->
+
+                    <!--history info-->
+                    <uib-tab heading="History" index="1" ng-click="searchData()">
+                        <uib-tab-heading >
+                            <span class="icon icon-user-md"></span> History
+                        </uib-tab-heading>
+
+
+                        <div class="row gutter-xs">
+                            <div class="col-xs-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <!-- <div class="card-actions">
+                                            <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                                            <button type="button" class="card-action card-reload" title="Reload"></button>
+                                        </div> -->
+                                        <strong>Payment history</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Invoice No</th>
+                                                        <th>Fee Type</th>
+                                                        <th>Fee Amount</th>
+                                                        <th>Payment Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in schoolFeeWrapper">
+                                                        <td> {{list.invoiceNo}}</td>
+                                                        <td>{{list.feeTypeValue}}</td>
+                                                        <td class="text-right">{{list.feeAmount}}</td>
+                                                        <td>{{list.paymentDate}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </uib-tab>
+                    <!--end of history -->
+
+                </uib-tabset>
+            </div>
+            <!---tab ends -->
+
+        </div>
+    </div>
+    <!---form ends-->
+</div>
+<div class="modal-footer"></div>

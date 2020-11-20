@@ -1,0 +1,1008 @@
+<div class="modal-header" ng-init="loadData()">
+  <button type="button" class="close" ng-click="$ctrl.cancel()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+  </button>
+</div>
+<div class="modal-body">
+
+
+  <!--form starts-->
+  <div class="login">
+    <div class="login-body">
+      <div class="row">
+        <h3 class="login-heading">Student Profile</h3>
+        <div ng-if="profileImage">
+          <div class="text-center"><img class="circle" width="60" height="60" ng-src="{{wrapper.avatar}}"></div>
+        </div>
+      </div>
+      <div class="login-form">
+
+        <div class="row">
+          <div class="col-sm-12">
+
+            <form name="loginForm" class="login-form form-horizontal" ng-submit="saveData()" novalidate>
+
+              <!----tab starts-->
+              <div class="panel m-b-lg">
+                <uib-tabset justified="true">
+
+                  <!--student info-->
+                  <uib-tab index="0">
+                    <uib-tab-heading>
+                      <span class="icon icon-user"></span> Student
+                    </uib-tab-heading>
+
+                    <!--student row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="admissionNo">Admission No</label>
+                        <input placeholder="Enter Admission No" type="text" minlength="1" maxlength="10"
+                          id="admissionNo" name="admissionNo" class="form-control" ng-model="wrapper.admissionNo"
+                          required>
+                        <div ng-show="loginForm.$submitted || loginForm.admissionNo.$touched">
+                          <small ng-show="loginForm.admissionNo.$error.required" class="has-error help-block">Please
+                            enter
+                            admission no</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="userid">User ID</label>
+                        <input placeholder="Enter User ID" ng-disabled="refNo !=''" type="text" maxlength="20"
+                          id="userid" name="userid" class="form-control" ng-model="wrapper.userid" required />
+                        <div ng-show="loginForm.$submitted || loginForm.userid.$touched">
+                          <small ng-show="loginForm.userid.$error.required" class="has-error help-block">Please enter
+                            user
+                            id</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="branchID">Branch</label>
+                        <select class="form-control" id="branchID" name="branchID" ng-model="wrapper.branchID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Branch'}"
+                          required>
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.branchID.$touched">
+                          <small ng-show="loginForm.branchID.$error.required" class="has-error help-block">Please select
+                            branch</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--student row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="studentID">Student ID</label>
+                        <input ng-model="wrapper.studentID" id="studentID" class="form-control" type="text"
+                          name="studentID" maxlength="20" required>
+                        <div ng-show="loginForm.$submitted || loginForm.studentID.$touched">
+                          <small ng-show="loginForm.studentID.$error.required" class="has-error help-block">Please enter
+                            student
+                            id</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="studentName">Student Name</label>
+                        <input ng-model="wrapper.studentName" id="studentName" class="form-control" type="text"
+                          name="studentName" minlength="1" maxlength="100" required>
+                        <div ng-show="loginForm.$submitted || loginForm.studentName.$touched">
+                          <small ng-show="loginForm.studentName.$error.required" class="has-error help-block">Please
+                            enter student name</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="surname">Surname</label>
+                        <input ng-model="wrapper.surname" id="surname" class="form-control" type="text" name="surname"
+                          minlength="1" maxlength="100" required>
+                        <div ng-show="loginForm.$submitted || loginForm.surname.$touched">
+                          <small ng-show="loginForm.surname.$error.required" class="has-error help-block">Please enter
+                            surname</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--student row 3-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="gradeID">Grade</label>
+                        <select id="gradeID" name="gradeID" ng-model="wrapper.gradeID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Grade'}"
+                          class="form-control" required>
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.gradeID.$touched">
+                          <small ng-show="loginForm.gradeID.$error.required" class="has-error help-block">Please select
+                            grade</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="sectionID">Section</label>
+                        <select id="sectionID" name="sectionID" ng-model="wrapper.sectionID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Section'}"
+                          class="form-control" required>
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.sectionID.$touched">
+                          <small ng-show="loginForm.sectionID.$error.required" class="has-error help-block">Please
+                            select section</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="academicYearID">Academic Year</label>
+                        <select id="academicYearID" name="academicYearID" ng-model="wrapper.academicYearID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_AcademicYear'}"
+                          class="form-control" required>
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.academicYearID.$touched">
+                          <small ng-show="loginForm.academicYearID.$error.required" class="has-error help-block">Please
+                            select academic year</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--student row 4-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="dob">Date of birth</label>
+                        <div class="input-with-icon">
+                          <input id="dob" name="dob" class="form-control" type="text" ng-model="wrapper.dob"
+                            ng-focus="open($event,'dob')" ng-change='getAge(wrapper.dob)'
+                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.dob" show-button-bar="false"
+                            datepicker-options="datepicker.options" required>
+                          <span class="icon icon-calendar input-icon"></span>
+                        </div>
+                        <div ng-show="loginForm.$submitted || loginForm.dob.$touched">
+                          <small ng-show="loginForm.dob.$error.required" class="has-error help-block">Please
+                            select date of birth</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="dobInWords">Date of birth in words</label>
+                        <input ng-disabled="true" type="text" maxlength="50" id="dobInWords" name="dobInWords"
+                          class="form-control" ng-model="wrapper.dobInWords" />
+                        <div ng-show="loginForm.$submitted || loginForm.dobInWords.$touched">
+                          <small ng-show="loginForm.dobInWords.$error.required" class="has-error help-block">Please
+                            enter dob in words</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" id="gender" name="gender" ng-model="wrapper.gender"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Gender'}"
+                          required>
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.gender.$touched">
+                          <small ng-show="loginForm.gender.$error.required" class="has-error help-block">Please
+                            select gender</small>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!--student row 5-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="joinDate">Join date</label>
+                        <div class="input-with-icon">
+                          <input id="joinDate" name="joinDate" class="form-control" type="text"
+                            ng-model="wrapper.joinDate" ng-focus="open($event,'joinDate')"
+                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.joinDate" show-button-bar="false"
+                            datepicker-options="datepicker.options">
+                          <span class="icon icon-calendar input-icon"></span>
+                        </div>
+                        <div ng-show="loginForm.$submitted || loginForm.joinDate.$touched">
+                          <small ng-show="loginForm.joinDate.$error.required" class="has-error help-block">Please
+                            select join date</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="studentPhotoID">Photo id</label>
+                        <input placeholder="Enter Student Photo ID" type="text" maxlength="20" id="studentPhotoID"
+                          name="studentPhotoID" class="form-control" ng-model="wrapper.studentPhotoID" />
+                        <div ng-show="loginForm.$submitted || loginForm.studentPhotoID.$touched">
+                          <small ng-show="loginForm.studentPhotoID.$error.required" class="has-error help-block">Please
+                            enter photo id</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="aadhaarNo">Aadhaar no</label>
+                        <input placeholder="Enter aadhaar no" type="text" maxlength="12" id="aadhaarNo" name="aadhaarNo"
+                          class="form-control" ng-model="wrapper.aadhaarNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.aadhaarNo.$touched">
+                          <small ng-show="loginForm.aadhaarNo.$error.required" class="has-error help-block">Please enter
+                            aadhaar no</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!--end of student info-->
+
+                  <!--personal info-->
+                  <uib-tab heading="Personal" index="1">
+                    <uib-tab-heading>
+                      <span class="icon icon-user-md"></span> Personal
+                    </uib-tab-heading>
+
+                    <!--personal row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="religion">Religion</label>
+                        <select class="form-control" id="religion" name="religion" ng-model="wrapper.religion"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Religion'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.religion.$touched">
+                          <small ng-show="loginForm.religion.$error.required" class="has-error help-block">Please select
+                            religion</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="caste">Caste</label>
+                        <select class="form-control" id="caste" name="caste" ng-model="wrapper.caste"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Caste'}:true">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.caste.$touched">
+                          <small ng-show="loginForm.caste.$error.required" class="has-error help-block">Please select
+                            caste</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="casteCategory">Caste category</label>
+                        <select class="form-control" id="casteCategory" name="casteCategory"
+                          ng-model="wrapper.casteCategory"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_CasteCategory'}:true">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.casteCategory.$touched">
+                          <small ng-show="loginForm.casteCategory.$error.required" class="has-error help-block">Please
+                            select
+                            caste category</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--personal row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="physicallyChallenged">Physically Challenged</label>
+                        <select class="form-control" id="physicallyChallenged" name="physicallyChallenged"
+                          ng-model="wrapper.physicallyChallenged"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Decision'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.physicallyChallenged.$touched">
+                          <small ng-show="loginForm.physicallyChallenged.$error.required"
+                            class="has-error help-block">Please select
+                            Physically Challenged</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="bankAccountNo">Bank Account No</label>
+                        <input placeholder="Enter Bank Account No" type="text" maxlength="20" id="bankAccountNo"
+                          name="bankAccountNo" class="form-control" ng-model="wrapper.bankAccountNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.bankAccountNo.$touched">
+                          <small ng-show="loginForm.bankAccountNo.$error.required" class="has-error help-block">Please
+                            select
+                            bank account no</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="bankName">Bank Name</label>
+                        <select class="form-control" id="bankName" name="bankName" ng-model="wrapper.bankName"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Bank'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.bankName.$touched">
+                          <small ng-show="loginForm.bankName.$error.required" class="has-error help-block">Please
+                            select
+                            bank name</small>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!--personal row 3-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="rationCardNo">Ration Card No</label>
+                        <input placeholder="Enter Ration Card No" type="text" maxlength="20" id="rationCardNo"
+                          name="rationCardNo" class="form-control" ng-model="wrapper.rationCardNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.rationCardNo.$touched">
+                          <small ng-show="loginForm.rationCardNo.$error.required" class="has-error help-block">Please
+                            enter ration card no</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="parentAnnualIncome">Parent Annual Income</label>
+                        <input placeholder="Enter Parent Annual Income" type="text" maxlength="8"
+                          id="parentAnnualIncome" name="parentAnnualIncome" class="form-control"
+                          ng-model="wrapper.parentAnnualIncome" />
+                        <div ng-show="loginForm.$submitted || loginForm.parentAnnualIncome.$touched">
+                          <small ng-show="loginForm.parentAnnualIncome.$error.required"
+                            class="has-error help-block">Please
+                            enter parent annual income</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="studentEmail">Student email</label>
+                        <div class="input-with-icon">
+                          <input placeholder="example@gmail.com" type="email" ng-disabled="refNo ==''" maxlength="50"
+                            id="studentEmail" name="studentEmail" class="form-control"
+                            ng-model="wrapper.studentEmail" />
+                          <div class="icon icon-envelope input-icon"></div>
+                        </div>
+                        <div ng-show="loginForm.$submitted || loginForm.studentEmail.$touched">
+                          <small ng-show="loginForm.studentEmail.$error.required" class="has-error help-block">Please
+                            enter student email</small>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!--personal row 4-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="identityMark1">Identity Mark 1</label>
+                        <input type="text" placeholder="Enter identity mark one" id="identityMark1" name="identityMark1"
+                          maxlength="50" ng-model="wrapper.identityMark1" class="form-control" />
+                        <div ng-show="loginForm.$submitted || loginForm.identityMark1.$touched">
+                          <small ng-show="loginForm.identityMark1.$error.required" class="has-error help-block">Please
+                            enter identity mark</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="identityMark2">Identity Mark 2</label>
+                        <input placeholder="Enter identity mark two" type="text" maxlength="50" id="identityMark2"
+                          name="identityMark2" class="form-control" ng-model="wrapper.identityMark2" />
+                        <div ng-show="loginForm.$submitted || loginForm.identityMark2.$touched">
+                          <small ng-show="loginForm.identityMark2.$error.required" class="has-error help-block">Please
+                            enter identity mark</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="bloodGroup">Blood Group</label>
+                        <select class="form-control" id="bloodGroup" name="bloodGroup" ng-model="wrapper.bloodGroup"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_BloodGroup'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.bloodGroup.$touched">
+                          <small ng-show="loginForm.bloodGroup.$error.required" class="has-error help-block">Please
+                            select blood group</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!----end of personal info-->
+
+
+                  <!-------passport info--------->
+                  <uib-tab heading="Passport" index="2">
+                    <uib-tab-heading>
+                      <span class="icon icon-book"></span>Passport
+                    </uib-tab-heading>
+
+                    <!--passport row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="passportNo">Passport No</label>
+                        <input placeholder="Enter passport no" type="text" maxlength="20" id="passportNo"
+                          name="passportNo" class="form-control" ng-model="wrapper.passportNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.passportNo.$touched">
+                          <small ng-show="loginForm.passportNo.$error.required" class="has-error help-block">Please
+                            enter passport no</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="passportExpiryDate">Expiry Date</label>
+                        <div class="input-with-icon">
+                          <input id="passportExpiryDate" name="passportExpiryDate" class="form-control" type="text"
+                            ng-model="wrapper.passportExpiryDate" ng-focus="open($event,'passportExpiryDate')"
+                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.passportExpiryDate"
+                            show-button-bar="false" datepicker-options="datepicker.options">
+                          <span class="icon icon-calendar input-icon"></span>
+                        </div>
+                        <div ng-show="loginForm.$submitted || loginForm.passportExpiryDate.$touched">
+                          <small ng-show="loginForm.passportExpiryDate.$error.required"
+                            class="has-error help-block">Please
+                            enter expiry date</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="passportIssueDate">Issue Date</label>
+                        <div class="input-with-icon">
+                          <input id="passportIssueDate" name="passportIssueDate" class="form-control" type="text"
+                            ng-model="wrapper.passportIssueDate" ng-focus="open($event,'passportIssueDate')"
+                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.passportIssueDate"
+                            show-button-bar="false" datepicker-options="datepicker.options">
+                          <span class="icon icon-calendar input-icon"></span>
+                        </div>
+                        <div ng-show="loginForm.$submitted || loginForm.passportIssueDate.$touched">
+                          <small ng-show="loginForm.passportIssueDate.$error.required"
+                            class="has-error help-block">Please
+                            enter issue date</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--passport row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="passportIssuePlace">Issue Place</label>
+                        <input placeholder="Enter passport Issue Place" type="text" maxlength="50"
+                          id="passportIssuePlace" name="passportIssuePlace" class="form-control"
+                          ng-model="wrapper.passportIssuePlace" />
+                        <div ng-show="loginForm.$submitted || loginForm.passportIssuePlace.$touched">
+                          <small ng-show="loginForm.passportIssuePlace.$error.required"
+                            class="has-error help-block">Please
+                            enter issue place</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="emiratesID">Emirates ID</label>
+                        <input placeholder="Enter emirates id" type="text" maxlength="20" id="emiratesID"
+                          name="emiratesID" class="form-control" ng-model="wrapper.emiratesID" />
+                        <div ng-show="loginForm.$submitted || loginForm.emiratesID.$touched">
+                          <small ng-show="loginForm.emiratesID.$error.required" class="has-error help-block">Please
+                            enter emirates id</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="visaNo">Visa No</label>
+                        <input placeholder="Enter Visa No" type="text" maxlength="20" id="visaNo" name="visaNo"
+                          class="form-control" ng-model="wrapper.visaNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.visaNo.$touched">
+                          <small ng-show="loginForm.visaNo.$error.required" class="has-error help-block">Please
+                            enter visa no</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--passport row 3-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="uidNo">UID No</label>
+                        <input number-only placeholder="Enter uid no" type="text" maxlength="20" id="uidNo" name="uidNo"
+                          class="form-control" ng-model="wrapper.uidNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.uidNo.$touched">
+                          <small ng-show="loginForm.uidNo.$error.required" class="has-error help-block">Please
+                            enter uid</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!-----end of passport info-->
+
+                  <!--parents info-->
+                  <uib-tab heading="Parents" index="3">
+                    <uib-tab-heading>
+                      <span class="icon icon-male"></span><span class="icon icon-female"></span> Parents
+                    </uib-tab-heading>
+
+                    <!--parents row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="fatherName">Father Name</label>
+                        <input placeholder="Enter Father Name" type="text" maxlength="50" id="fatherName"
+                          name="fatherName" class="form-control" ng-model="wrapper.fatherName" />
+                        <div ng-show="loginForm.$submitted || loginForm.fatherName.$touched">
+                          <small ng-show="loginForm.fatherName.$error.required" class="has-error help-block">Please
+                            enter father name</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="fatherSurname">Surname</label>
+                        <input placeholder="Enter Father Surname" type="text" maxlength="50" id="fatherSurname"
+                          name="fatherSurname" class="form-control" ng-model="wrapper.fatherSurname" />
+                        <div ng-show="loginForm.$submitted || loginForm.fatherSurname.$touched">
+                          <small ng-show="loginForm.fatherSurname.$error.required" class="has-error help-block">Please
+                            enter father surname</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="fatherOccupation">Father Occupation</label>
+                        <select class="form-control" id="fatherOccupation" name="fatherOccupation"
+                          ng-model="wrapper.fatherOccupation"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Occupation'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.fatherOccupation.$touched">
+                          <small ng-show="loginForm.fatherOccupation.$error.required"
+                            class="has-error help-block">Please
+                            select
+                            father occupation</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--parents row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="fatherAge">Father Age</label>
+                        <input number-only placeholder="Enter Father Age" type="text" maxlength="2" id="fatherAge"
+                          name="fatherAge" class="form-control" ng-model="wrapper.fatherAge" />
+                        <div ng-show="loginForm.$submitted || loginForm.fatherAge.$touched">
+                          <small ng-show="loginForm.fatherAge.$error.required" class="has-error help-block">Please
+                            enter father age</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="fatherEducation">Father Education</label>
+                        <select class="form-control" id="fatherEducation" name="fatherEducation"
+                          ng-model="wrapper.fatherEducation"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Education'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.fatherEducation.$touched">
+                          <small ng-show="loginForm.fatherEducation.$error.required" class="has-error help-block">Please
+                            select father eduction</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="fatherAadhaarNo">Father Aadhaar No</label>
+                        <input number-only placeholder="Enter father aadhaar no" type="text" maxlength="12"
+                          id="fatherAadhaarNo" name="fatherAadhaarNo" class="form-control"
+                          ng-model="wrapper.fatherAadhaarNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.fatherAadhaarNo.$touched">
+                          <small ng-show="loginForm.fatherAadhaarNo.$error.required" class="has-error help-block">Please
+                            enter father aadhaar no</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--parents row 3-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="motherName">Mother Name</label>
+                        <input placeholder="Enter Mother Name" type="text" maxlength="50" id="motherName"
+                          name="motherName" class="form-control" ng-model="wrapper.motherName" />
+                        <div ng-show="loginForm.$submitted || loginForm.motherName.$touched">
+                          <small ng-show="loginForm.motherName.$error.required" class="has-error help-block">Please
+                            enter mother name</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="motherSurname">Mother Surname</label>
+                        <input placeholder="Enter Mother Surname" type="text" maxlength="50" id="motherSurname"
+                          name="motherSurname" class="form-control" ng-model="wrapper.motherSurname" />
+                        <div ng-show="loginForm.$submitted || loginForm.motherSurname.$touched">
+                          <small ng-show="loginForm.motherSurname.$error.required" class="has-error help-block">Please
+                            enter mother surname</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="motherOccupation">Mother Occupation</label>
+                        <select class="form-control" id="motherOccupation" name="motherOccupation"
+                          ng-model="wrapper.motherOccupation"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Occupation'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.motherOccupation.$touched">
+                          <small ng-show="loginForm.motherOccupation.$error.required"
+                            class="has-error help-block">Please
+                            select
+                            mother occupation</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--parents row 4-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="motherAge">Mother Age</label>
+                        <input number-only placeholder="Enter Mother Age" type="text" maxlength="2" id="motherAge"
+                          name="motherAge" class="form-control" ng-model="wrapper.motherAge" />
+                        <div ng-show="loginForm.$submitted || loginForm.motherAge.$touched">
+                          <small ng-show="loginForm.motherAge.$error.required" class="has-error help-block">Please
+                            enter mother age</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="motherEducation">Mother Education</label>
+                        <select class="form-control" id="motherEducation" name="motherEducation"
+                          ng-model="wrapper.motherEducation"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Education'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.motherEducation.$touched">
+                          <small ng-show="loginForm.motherEducation.$error.required" class="has-error help-block">Please
+                            select mother eduction</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="motherAadhaarNo">Mother Aadhaar No</label>
+                        <input number-only placeholder="Enter mother aadhaar no" type="text" maxlength="12"
+                          id="motherAadhaarNo" name="motherAadhaarNo" class="form-control"
+                          ng-model="wrapper.motherAadhaarNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.motherAadhaarNo.$touched">
+                          <small ng-show="loginForm.motherAadhaarNo.$error.required" class="has-error help-block">Please
+                            enter mother aadhaar no</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!----end of parents info-->
+
+                  <!-----Current Address info-->
+                  <uib-tab heading="Current Address" index="4">
+                    <uib-tab-heading>
+                      <span class="icon icon-home"></span> Address
+                    </uib-tab-heading>
+
+                    <!--Current Address row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="address1">Address 1</label>
+                        <input placeholder="Enter Address-1" type="text" maxlength="50" id="address1" name="address1"
+                          class="form-control" ng-model="wrapper.address1" />
+                        <div ng-show="loginForm.$submitted || loginForm.address1.$touched">
+                          <small ng-show="loginForm.address1.$error.required" class="has-error help-block">Please
+                            enter address 1</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="address2">Address 2</label>
+                        <input placeholder="Enter Address-2" type="text" maxlength="50" id="address2" name="address2"
+                          class="form-control" ng-model="wrapper.address2" />
+                        <div ng-show="loginForm.$submitted || loginForm.address2.$touched">
+                          <small ng-show="loginForm.address2.$error.required" class="has-error help-block">Please
+                            enter address 2</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="address3">Address 3</label>
+                        <input placeholder="Enter Address-3" type="text" maxlength="50" id="address3" name="address3"
+                          class="form-control" ng-model="wrapper.address3" />
+                        <div ng-show="loginForm.$submitted || loginForm.address3.$touched">
+                          <small ng-show="loginForm.address3.$error.required" class="has-error help-block">Please
+                            enter address 3</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Current Address row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="cityID">City</label>
+                        <select class="form-control" id="cityID" name="cityID" ng-model="wrapper.cityID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_City'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.cityID.$touched">
+                          <small ng-show="loginForm.cityID.$error.required" class="has-error help-block">Please
+                            select city</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="districtID">District</label>
+                        <select class="form-control" id="districtID" name="districtID" ng-model="wrapper.districtID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_District'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.districtID.$touched">
+                          <small ng-show="loginForm.districtID.$error.required" class="has-error help-block">Please
+                            select district</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="stateID">State</label>
+                        <select class="form-control" id="stateID" name="stateID" ng-model="wrapper.stateID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_State'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.stateID.$touched">
+                          <small ng-show="loginForm.stateID.$error.required" class="has-error help-block">Please
+                            select state</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Current Address row 3-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="pinCode">PIN Code</label>
+                        <input number-only placeholder="Enter PIN Code" type="text" maxlength="6" id="pinCode"
+                          name="pinCode" class="form-control" ng-model="wrapper.pinCode" />
+                        <div ng-show="loginForm.$submitted || loginForm.pinCode.$touched">
+                          <small ng-show="loginForm.pinCode.$error.required" class="has-error help-block">Please
+                            enter pin code</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!--end of Current Address info-->
+
+                  <!-----Permanent Address info-->
+                  <uib-tab heading="Permanent Address" index="5">
+                    <uib-tab-heading>
+                      <span class="icon icon-globe"></span> Permanent
+                    </uib-tab-heading>
+
+
+                    <!--Permanent Address row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-12">
+                        <label for="sameAddressFlag">
+                          <input placeholder="Enter Address-1" type="checkbox"
+                            ng-change="setPermAdd(wrapper.sameAddressFlag)" ng-true-value="'Y'" ng-false-value="'N'"
+                            id="sameAddressFlag" name="sameAddressFlag" ng-model="wrapper.sameAddressFlag"></input>
+                          Is permanent address same as current address ?</label>
+                      </div>
+                    </div>
+
+                    <!--Permanent Address row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="permAddress1">Address 1</label>
+                        <input placeholder="Enter Address-1" type="text" maxlength="50" id="permAddress1"
+                          name="permAddress1" class="form-control" ng-model="wrapper.permAddress1" />
+                        <div ng-show="loginForm.$submitted || loginForm.permAddress1.$touched">
+                          <small ng-show="loginForm.permAddress1.$error.required" class="has-error help-block">Please
+                            enter address 1</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="permAddress2">Address 2</label>
+                        <input placeholder="Enter Address-2" type="text" maxlength="50" id="permAddress2"
+                          name="permAddress2" class="form-control" ng-model="wrapper.permAddress2" />
+                        <div ng-show="loginForm.$submitted || loginForm.permAddress2.$touched">
+                          <small ng-show="loginForm.permAddress2.$error.required" class="has-error help-block">Please
+                            enter address 2</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="permAddress3">Address 3</label>
+                        <input placeholder="Enter Address-3" type="text" maxlength="50" id="permAddress3"
+                          name="permAddress3" class="form-control" ng-model="wrapper.permAddress3" />
+                        <div ng-show="loginForm.$submitted || loginForm.permAddress3.$touched">
+                          <small ng-show="loginForm.permAddress3.$error.required" class="has-error help-block">Please
+                            enter address 3</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Permanent Address row 3-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="permCityID">City</label>
+                        <select class="form-control" id="permCityID" name="permCityID" ng-model="wrapper.permCityID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_City'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.permCityID.$touched">
+                          <small ng-show="loginForm.permCityID.$error.required" class="has-error help-block">Please
+                            select city</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="permDistrictID">District</label>
+                        <select class="form-control" id="permDistrictID" name="permDistrictID"
+                          ng-model="wrapper.permDistrictID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_District'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.permDistrictID.$touched">
+                          <small ng-show="loginForm.permDistrictID.$error.required" class="has-error help-block">Please
+                            select district</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="permStateID">State</label>
+                        <select class="form-control" id="permStateID" name="permStateID" ng-model="wrapper.permStateID"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_State'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.permStateID.$touched">
+                          <small ng-show="loginForm.permStateID.$error.required" class="has-error help-block">Please
+                            select state</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Permanent Address row 4-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="permPINCode">PIN Code</label>
+                        <input number-only placeholder="Enter PIN Code" type="text" maxlength="6" id="permPINCode"
+                          name="permPINCode" class="form-control" ng-model="wrapper.permPINCode" />
+                        <div ng-show="loginForm.$submitted || loginForm.permPINCode.$touched">
+                          <small ng-show="loginForm.permPINCode.$error.required" class="has-error help-block">Please
+                            enter pin code</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!--end of Current Address info-->
+
+                  <!-----Contact info-->
+                  <uib-tab heading="Contact" index="6">
+                    <uib-tab-heading>
+                      <span class="icon icon-phone"></span> Contact
+                    </uib-tab-heading>
+
+
+                    <!--Contact row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="primaryMobile">Primary Mobile(sms to be sent)</label>
+                        <input number-only placeholder="Enter Primary Mobile" type="number" maxlength="10"
+                          id="primaryMobile" name="primaryMobile" class="form-control"
+                          ng-model="wrapper.primaryMobile" />
+                        <div ng-show="loginForm.$submitted || loginForm.primaryMobile.$touched">
+                          <small ng-show="loginForm.primaryMobile.$error.required" class="has-error help-block">Please
+                            enter primary mobile</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="secondaryMobile">Secondary Mobile</label>
+                        <input number-only placeholder="Enter secondary mobile" type="number" maxlength="10"
+                          id="secondaryMobile" name="secondaryMobile" class="form-control"
+                          ng-model="wrapper.secondaryMobile" />
+                        <div ng-show="loginForm.$submitted || loginForm.secondaryMobile.$touched">
+                          <small ng-show="loginForm.secondaryMobile.$error.required" class="has-error help-block">Please
+                            enter secondary mobile</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="primaryEmail">Primary Email</label>
+                        <div class="input-with-icon">
+
+                          <input placeholder="example@gmail.com" type="email" maxlength="50" id="primaryEmail"
+                            name="primaryEmail" class="form-control" ng-model="wrapper.primaryEmail" />
+                          <div class="icon icon-envelope input-icon"></div>
+                        </div>
+
+                        <div ng-show="loginForm.$submitted || loginForm.primaryEmail.$touched">
+                          <small ng-show="loginForm.primaryEmail.$error.required" class="has-error help-block">Please
+                            enter primary email</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Contact row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="secondaryEmail">Secondary Email</label>
+                        <div class="input-with-icon">
+                          <input placeholder="example@gmail.com" type="email" maxlength="50" id="secondaryEmail"
+                            name="secondaryEmail" class="form-control" ng-model="wrapper.secondaryEmail" />
+                          <div class="icon icon-envelope input-icon"></div>
+                        </div>
+                        <div ng-show="loginForm.$submitted || loginForm.secondaryEmail.$touched">
+                          <small ng-show="loginForm.secondaryEmail.$error.required" class="has-error help-block">Please
+                            enter secondary email</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!--end of Contact info-->
+
+
+                  <!-----Transport info-->
+                  <uib-tab heading="Transport" index="7">
+                    <uib-tab-heading>
+                      <span class="icon icon-bus"></span> Transport
+                    </uib-tab-heading>
+
+
+                    <!--Transport row 1-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="busRouteNo">Bus Route</label>
+                        <select class="form-control" id="busRouteNo" name="busRouteNo" ng-model="wrapper.busRouteNo"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_BusRoute'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.busRouteNo.$touched">
+                          <small ng-show="loginForm.busRouteNo.$error.required" class="has-error help-block">Please
+                            select bus route</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="busPickupPoint">Bus Pick Point</label>
+                        <select class="form-control" id="busPickupPoint" name="busPickupPoint"
+                          ng-model="wrapper.busPickupPoint"
+                          ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_BusPickupPoint'}">
+                          <option value="">Select</option>
+                        </select>
+                        <div ng-show="loginForm.$submitted || loginForm.busPickupPoint.$touched">
+                          <small ng-show="loginForm.busPickupPoint.$error.required" class="has-error help-block">Please
+                            select bus pick point</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="driverName">Driver Name</label>
+                        <input placeholder="Enter Driver Name" type="text" maxlength="50" id="driverName"
+                          name="driverName" class="form-control" ng-model="wrapper.driverName" />
+                        <div ng-show="loginForm.$submitted || loginForm.driverName.$touched">
+                          <small ng-show="loginForm.driverName.$error.required" class="has-error help-block">Please
+                            enter driver name</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Transport row 2-->
+                    <div class="form-group">
+                      <div class="col-xs-4">
+                        <label for="driverMobileNo">Mobile No</label>
+                        <input number-only placeholder="Enter Driver Mobile No" type="number" maxlength="10"
+                          id="driverMobileNo" name="driverMobileNo" class="form-control"
+                          ng-model="wrapper.driverMobileNo" />
+                        <div ng-show="loginForm.$submitted || loginForm.driverMobileNo.$touched">
+                          <small ng-show="loginForm.driverMobileNo.$error.required" class="has-error help-block">Please
+                            enter mobile no</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="driverName2">Driver Name 2</label>
+                        <input placeholder="Enter Driver Name2" type="text" maxlength="50" id="driverName2"
+                          name="driverName2" class="form-control" ng-model="wrapper.driverName2" />
+                        <div ng-show="loginForm.$submitted || loginForm.driverName2.$touched">
+                          <small ng-show="loginForm.driverName2.$error.required" class="has-error help-block">Please
+                            enter driver name 2</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-4">
+                        <label for="driverMobileNo2">Mobile No 2</label>
+                        <input number-only placeholder="Enter Driver Mobile No2" type="number" maxlength="10"
+                          id="driverMobileNo2" name="driverMobileNo2" class="form-control"
+                          ng-model="wrapper.driverMobileNo2" />
+                        <div ng-show="loginForm.$submitted || loginForm.driverMobileNo2.$touched">
+                          <small ng-show="loginForm.driverMobileNo2.$error.required" class="has-error help-block">Please
+                            enter driver mobile no 2</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </uib-tab>
+                  <!--end of Transport info-->
+
+
+
+                </uib-tabset>
+              </div>
+              <!---tab ends -->
+
+
+
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="col-xs-6">
+
+                    </div>
+                    <div class="col-xs-3">
+                      <button class="btn btn-primary btn-block" type="submit">Save</button>
+                    </div>
+                    <div class="col-xs-3">
+                      <button class="btn btn-default btn-block" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!---form ends-->
+
+  <!-- <div ng-repeat="(key,val) in alerts" class="alert {{key}}">
+      <div class="errormsg-label" ng-repeat="msg in val">{{msg}}</div>
+    </div> -->
+</div>
+<div class="modal-footer"></div>

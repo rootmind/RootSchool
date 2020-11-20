@@ -1,0 +1,69 @@
+<div class="layout-content-body" ng-init="loadStudentProfile()">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>My Transport</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="demo-form-wrapper">
+
+                <div class="panel panel-body" match-height>
+
+                    <!----first box-->
+                    <h4>Transport</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+
+                            <!--Transport row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="busRouteNo">Bus Route</label>
+                                    <input type="text" id="busRouteNo" name="busRouteNo" class="form-control"
+                                    ng-model="wrapper.busRouteNoValue">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="busPickupPoint">Bus Pick Point</label>
+                                    <input type="text" id="busPickupPoint" name="busPickupPoint" class="form-control"
+                                    ng-model="wrapper.busPickupPointValue">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="driverName">Driver Name</label>
+                                    <input type="text" id="driverName" name="driverName" class="form-control"
+                                    ng-model="wrapper.driverName">
+                                </div>
+                            </div>
+
+                            <!--Transport row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="driverMobileNo">Mobile No</label>
+                                    <input type="text" id="driverMobileNo" name="driverMobileNo" class="form-control"
+                                    ng-model="wrapper.driverMobileNo">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="driverName2">Driver Name 2</label>
+                                    <input type="text" id="driverName2" name="driverName2" class="form-control"
+                                    ng-model="wrapper.driverName2">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="driverMobileNo2">Mobile No 2</label>
+                                    <input type="text" id="driverMobileNo2" name="driverMobileNo2" class="form-control"
+                                    ng-model="wrapper.driverMobileNo2">
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <!-----end of box one-->
+
+
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.layout-content-body -->

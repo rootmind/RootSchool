@@ -1,0 +1,81 @@
+<div class="layout-content-body" ng-init="loadStudentProfile()">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>My Identity</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="demo-form-wrapper">
+
+                <div class="panel panel-body" match-height>
+
+                    <!----first box-->
+                    <h4>Identity</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+
+                            <!--passport row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="passportNo">Passport No</label>
+                                    <input type="text" id="passportNo" name="passportNo" class="form-control"
+                                        ng-model="wrapper.passportNo">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="passportExpiryDate">Expiry Date</label>
+                                    <input id="passportExpiryDate" name="passportExpiryDate" class="form-control"
+                                        type="text" ng-model="wrapper.passportExpiryDate"
+                                        uib-datepicker-popup="dd/MM/yyyy" show-button-bar="false"
+                                        datepicker-options="datepicker.options">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="passportIssueDate">Issue Date</label>
+                                    <input id="passportIssueDate" name="passportIssueDate" class="form-control"
+                                        type="text" ng-model="wrapper.passportIssueDate"
+                                        uib-datepicker-popup="dd/MM/yyyy" show-button-bar="false"
+                                        datepicker-options="datepicker.options">
+                                </div>
+                            </div>
+
+                            <!--passport row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="passportIssuePlace">Issue Place</label>
+                                    <input type="text" id="passportIssuePlace" name="passportIssuePlace"
+                                        class="form-control" ng-model="wrapper.passportIssuePlace">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="emiratesID">Emirates ID</label>
+                                    <input type="text" id="emiratesID" name="emiratesID" class="form-control"
+                                        ng-model="wrapper.emiratesID">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="visaNo">Visa No</label>
+                                    <input type="text" id="visaNo" name="visaNo" class="form-control"
+                                        ng-model="wrapper.visaNo">
+                                </div>
+                            </div>
+
+                            <!--passport row 3-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="uidNo">UID No</label>
+                                    <input type="text" id="uidNo" name="uidNo" class="form-control"
+                                        ng-model="wrapper.uidNo">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-----end of box one-->
+
+
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.layout-content-body -->

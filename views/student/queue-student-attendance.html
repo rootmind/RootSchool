@@ -1,0 +1,114 @@
+<div class="layout-content-body" ng-init="loadData();">
+    <div class="row gutter-xs">
+        <!-- <div class="col-xs-12">
+        <p><small>The tables presented below use <a href="https://datatables.net/extensions/responsive/" target="_blank">DataTables Responsive Extension</a>, the styling of which is completely rewritten in SASS, without modifying however anything in JavaScript.</small></p>
+      </div> -->
+    </div>
+    <div class="row gutter-xs">
+        <div class="col-xs-12">
+            <div class="card">
+                <!-- <div class="card-header">
+            <div class="card-actions">
+              <button type="button" class="card-action card-toggler" title="Collapse"></button>
+              <button type="button" class="card-action card-reload" title="Reload"></button>
+              <button type="button" class="card-action card-remove" title="Remove"></button>
+            </div>
+            <strong>Responsive Table</strong>
+          </div> -->
+                <div class="card-body">
+                    <!-- <table datatable class="table table-hover table-striped table-nowrap dataTable" dt-columns="dt.columns" dt-options="dt.options" cellspacing="0" width="100%">
+            </table> -->
+                    <div class="form-group">
+                        <form name="loginForm" class="login-form" ng-submit="dtSearch();" novalidate>
+
+                            <!-- <div class="col-xs-2">
+                                <select class="custom-select" id="academicYearID" name="academicYearID" ng-model="wrapper.academicYearID"
+                                    ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_AcademicYear'}"
+                                    class="form-control" required>
+                                    <option value="" selected="">Academic Year</option>
+                                </select>
+                            </div> -->
+                            <div class="col-xs-3">
+                                <select class="custom-select" id="gradeID" name="gradeID" ng-model="wrapper.gradeID"
+                                    ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Grade'}"
+                                    class="form-control" required>
+                                    <option value="" selected="">Grade</option>
+                                </select>
+                                <div ng-show="loginForm.$submitted || loginForm.gradeID.$touched">
+                                    <small ng-show="loginForm.gradeID.$error.required"
+                                        class="has-error help-block">Please
+                                        select grade</small>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-2">
+                                <select class="custom-select" id="sectionID" name="sectionID"
+                                    ng-model="wrapper.sectionID"
+                                    ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Section'}"
+                                    class="form-control" required>
+                                    <option value="" selected="">Section</option>
+                                </select>
+                                <div ng-show="loginForm.$submitted || loginForm.sectionID.$touched">
+                                    <small ng-show="loginForm.sectionID.$error.required"
+                                        class="has-error help-block">Please
+                                        select section</small>
+                                </div>
+                                
+                            </div>
+                            <div class="col-xs-3">
+                                    <div class="input-with-icon">
+                                        <input id="calendarDate" name="calendarDate" class="form-control" type="text"
+                                            ng-model="wrapper.calendarDate" ng-focus="open($event,'calendarDate')"
+                                            uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.calendarDate"
+                                            show-button-bar="false" datepicker-options="datepicker.options" required>
+                                        <span class="icon icon-calendar input-icon"></span>
+                                    </div>
+                                    <div ng-show="loginForm.$submitted || loginForm.calendarDate.$touched">
+                                        <small ng-show="loginForm.calendarDate.$error.required"
+                                            class="has-error help-block">Please
+                                            select date</small>
+                                    </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="text-center">
+                                    <button class="btn btn-primary btn-block" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form name="addForm" class="login-form" ng-submit="saveData();" novalidate>
+                            <div class="col-xs-2">
+                                <div class="text-center">
+                                    <button class="btn btn-primary btn-block" type="submit">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="text-center m-b">
+        <h3 class="m-b-0">Bordered Table</h3>
+        <small>With borders on all sides of the table and cells.</small>
+    </div> -->
+    <div class="row gutter-xs">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-actions">
+                        <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                        <button type="button" class="card-action card-reload" title="Reload"></button>
+                        <!-- <button type="button" class="card-action card-remove" title="Remove"></button> -->
+                    </div>
+                    <strong>Student Attendance search</strong>
+                </div>
+                <div class="card-body">
+                    <table datatable class="table table-bordered table-striped table-nowrap dataTable"
+                        dt-columns="dt.columns" dt-options="dt.options" dt-instance="dt.dtInstance"
+                        dt-column-defs="dt.dtColumnDefs" cellspacing="0" width="100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.layout-content-body -->

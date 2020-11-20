@@ -1,0 +1,214 @@
+<div class="layout-content-body" ng-init="loadData();">
+  <div class="row gutter-xs">
+      <!-- <div class="col-xs-12">
+      <p><small>The tables presented below use <a href="https://datatables.net/extensions/responsive/" target="_blank">DataTables Responsive Extension</a>, the styling of which is completely rewritten in SASS, without modifying however anything in JavaScript.</small></p>
+    </div> -->
+  </div>
+  <div class="row gutter-xs">
+      <div class="col-xs-12">
+          <div class="card">
+              <!-- <div class="card-header">
+          <div class="card-actions">
+            <button type="button" class="card-action card-toggler" title="Collapse"></button>
+            <button type="button" class="card-action card-reload" title="Reload"></button>
+            <button type="button" class="card-action card-remove" title="Remove"></button>
+          </div>
+          <strong>Responsive Table</strong>
+        </div> -->
+              <div class="card-body">
+                  <!-- <table datatable class="table table-hover table-striped table-nowrap dataTable" dt-columns="dt.columns" dt-options="dt.options" cellspacing="0" width="100%">
+          </table> -->
+                  <form name="loginForm" class="login-form form-horizontal" ng-submit="dtSearch();" novalidate>
+
+                      <!-- <div class="col-xs-2">
+                              <select class="custom-select" id="academicYearID" name="academicYearID" ng-model="wrapper.academicYearID"
+                                  ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_AcademicYear'}"
+                                  class="form-control" required>
+                                  <option value="" selected="">Academic Year</option>
+                              </select>
+                          </div> -->
+                      <div class="form-group">
+                          <div class="col-xs-3">
+                              <select class="custom-select" id="gradeID" name="gradeID" ng-model="wrapper.gradeID"
+                                  ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Grade'}"
+                                  class="form-control">
+                                  <option value="" selected="">Grade</option>
+                              </select>
+                              <div ng-show="loginForm.$submitted || loginForm.gradeID.$touched">
+                                  <small ng-show="loginForm.gradeID.$error.required"
+                                      class="has-error help-block">Please select grade</small>
+                              </div>
+                          </div>
+                          <div class="col-xs-3">
+                              <select class="custom-select" id="sectionID" name="sectionID"
+                                  ng-model="wrapper.sectionID"
+                                  ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_SECTION'}"
+                                  class="form-control" >
+                                  <option value="" selected="">Section</option>
+                              </select>
+                              <div ng-show="loginForm.$submitted || loginForm.sectionID.$touched">
+                                  <small ng-show="loginForm.sectionID.$error.required"
+                                      class="has-error help-block">Please select section</small>
+                              </div>
+                          </div>
+                          <div class="col-xs-3">
+                              <select class="custom-select" id="subjectID" name="subjectID"
+                                  ng-model="wrapper.subjectID"
+                                  ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Subject'}"
+                                  class="form-control" >
+                                  <option value="" selected="">Subject</option>
+                              </select>
+                              <div ng-show="loginForm.$submitted || loginForm.subjectID.$touched">
+                                  <small ng-show="loginForm.subjectID.$error.required"
+                                      class="has-error help-block">Please select subject</small>
+                              </div>
+                          </div>
+                          <div class="col-xs-3">
+                              <select class="custom-select" id="termID" name="termID" ng-model="wrapper.termID"
+                                  ng-options="option.code as option.desc for option in popoverWrapper | filter:{tableName:'MST_Term'}"
+                                  class="form-control" >
+                                  <option value="" selected="">Term</option>
+                              </select>
+                              <div ng-show="loginForm.$submitted || loginForm.termID.$touched">
+                                  <small ng-show="loginForm.termID.$error.required"
+                                      class="has-error help-block">Please select term</small>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-3">
+                              <label for="chapterStartDate">Chapter Start Date</label>
+                              <div class="input-with-icon">
+                                  <input id="chapterStartDate" name="chapterStartDate" class="form-control"
+                                      type="text" ng-model="wrapper.chapterStartDate"
+                                      ng-focus="open($event,'chapterStartDate')" uib-datepicker-popup="dd/MM/yyyy"
+                                      is-open="datepickers.chapterStartDate" show-button-bar="false"
+                                      datepicker-options="datepicker.options" >
+                                  <span class="icon icon-calendar input-icon"></span>
+                              </div>
+                              <div ng-show="loginForm.$submitted || loginForm.chapterStartDate.$touched">
+                                  <small ng-show="loginForm.chapterStartDate.$error.required"
+                                      class="has-error help-block">Please
+                                      select chapter start date</small>
+                              </div>
+                          </div>
+                          <div class="col-xs-3">
+                              <label for="chapterEndDate">Chapter End Date</label>
+                              <div class="input-with-icon">
+                                  <input id="chapterEndDate" name="chapterEndDate" class="form-control" type="text"
+                                      ng-model="wrapper.chapterEndDate" ng-focus="open($event,'chapterEndDate')"
+                                      uib-datepicker-popup="dd/MM/yyyy" is-open="datepickers.chapterEndDate"
+                                      show-button-bar="false" datepicker-options="datepicker.options" >
+                                  <span class="icon icon-calendar input-icon"></span>
+                              </div>
+                              <div ng-show="loginForm.$submitted || loginForm.chapterEndDate.$touched">
+                                  <small ng-show="loginForm.chapterEndDate.$error.required"
+                                      class="has-error help-block">Please
+                                      select chapter end date</small>
+                              </div>
+                          </div>
+                          <div class="col-xs-3">
+                              <label ></label>
+                              <div class="text-center">
+                                  <button  class="btn btn-primary btn-block" type="submit">Search</button>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+                  <!-- <form name="addForm" class="login-form" ng-submit="doAdd();" novalidate>
+                      <div class="col-xs-3">
+                          <label></label>
+                          <div class="text-center">
+                              <button class="btn btn-primary btn-block" type="submit">Add</button>
+                          </div>
+                      </div>
+                  </form> -->
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- <div class="text-center m-b">
+      <h3 class="m-b-0">Bordered Table</h3>
+      <small>With borders on all sides of the table and cells.</small>
+  </div> -->
+  <div class="row gutter-xs">
+      <div class="col-xs-12">
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-actions">
+                      <button type="button" class="card-action card-toggler" title="Collapse"></button>
+                      <button type="button" class="card-action card-reload" title="Reload"></button>
+                      <!-- <button type="button" class="card-action card-remove" title="Remove"></button> -->
+                  </div>
+                  <strong>Documents search</strong>
+              </div>
+              <div class="card-body">
+                  <table datatable class="table table-bordered table-striped table-nowrap dataTable"
+                      dt-columns="dt.columns.view" dt-options="dt.options" dt-instance="dt.dtInstance" cellspacing="0"
+                      width="100%">
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div><!-- /.layout-content-body -->
+<div id="player"></div>
+
+
+<!-- <div class="layout-content-body" ng-init="fetchGradeSubjects()">
+  <div class="row">
+    <div class="col-xs-12">
+      <p><small>The size, distance, colours and icons of any file presented below may change through the variables
+          stated in <code>_variables.scss</code>. This component is created to be used with <a
+            href="drive.html">Drive</a>, <a href="inbox.html">Email</a>, <a href="messenger.html">Messenger</a>,
+          etc.</small></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="file-list">
+        <li class="file" ng-repeat="list in subjectsWrapper">
+          <a class="file-link" href="{{list.imageFileFolder}}" target="_blank" title="{{list.gradeID}}">
+            <div class="file-thumbnail file-thumbnail-doc"></div>
+            <div class="file-info">
+              <span class="file-ext">{{list.imageFileType}}</span>
+              <span class="file-name">{{list.imageFileName}}</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  /.row
+
+  <div class="layout-content-body">
+    <div ng-repeat="list in subjectsWrapper">
+      <div class="row gutter-xs">
+        <div class="col-md-6 col-lg-3 col-lg-push-0">
+          <div class="card bg-primary">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-middle media-left">
+                  <span class="bg-primary-inverse circle sq-48">
+                    <span class="icon icon-works">&#80;</span>
+                  </span>
+                </div>
+                <div class="media-middle media-body">
+                  <h6 class="media-heading">{{list.gradeIDValue}}</h6>
+                  <h3 class="media-heading">
+                    <span class="fw-l">{{list.subjectIDValue}}</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+/.layout-content-body -->

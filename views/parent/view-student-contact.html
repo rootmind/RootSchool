@@ -1,0 +1,58 @@
+<div class="layout-content-body" ng-init="loadStudentProfile()">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>My Contact</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="demo-form-wrapper">
+
+                <div class="panel panel-body" match-height>
+
+                    <!----first box-->
+                    <h4>Contact</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+
+                            <!--Contact row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="primaryMobile">Primary Mobile(sms to be sent)</label>
+                                    <input type="text" id="primaryMobile" name="primaryMobile" class="form-control"
+                                    ng-model="wrapper.primaryMobile">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="secondaryMobile">Secondary Mobile</label>
+                                    <input type="text" id="secondaryMobile" name="secondaryMobile" class="form-control"
+                                    ng-model="wrapper.secondaryMobile">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="primaryEmail">Primary Email</label>
+                                    <input type="text" id="primaryEmail" name="primaryEmail" class="form-control"
+                                    ng-model="wrapper.primaryEmail">
+                                </div>
+                            </div>
+
+                            <!--Contact row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="secondaryEmail">Secondary Email</label>
+                                    <input type="text" id="secondaryEmail" name="secondaryEmail" class="form-control"
+                                    ng-model="wrapper.secondaryEmail">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-----end of box one-->
+
+
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.layout-content-body -->

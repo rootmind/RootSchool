@@ -1,0 +1,241 @@
+<div class="layout-content-body" ng-init="loadStudentProfile()">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>About Me</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="demo-form-wrapper">
+
+                <div class="panel panel-body" match-height>
+
+                    <div class="card">
+                        <div class="card-header no-border">
+                            <div class="media">
+                                <div class="media-middle media-left">
+                                    <div ng-if="profileImage" class="icon-with-child">
+                                        <img class="circle" width="200" height="200" ng-src="{{wrapper.avatar}}" alt="">
+                                    </div>
+                                    <div ng-if="!profileImage" class="icon-with-child">
+                                        <img class="circle" width="200" height="200" src="img/student/empty_person.png"
+                                            alt="">
+                                    </div>
+                                </div>
+                                <div class="media-middle media-body">
+                                    <h1 class="profile-name">{{wrapper.studentName}} {{wrapper.surname}}
+                                    </h1>
+                                    <p class="text-primary">{{wrapper.gradeIDValue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.card -->
+
+                    <!----first box-->
+                    <h4>Profile</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+                            <!--student row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="admissionNo">Admission No</label>
+                                    <input type="text" id="admissionNo" name="admissionNo" class="form-control"
+                                        ng-model="wrapper.admissionNo" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="userid">User ID</label>
+                                    <input type="text" id="userid" name="userid" class="form-control"
+                                        ng-model="wrapper.userid"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="branchID">Branch</label>
+                                    <input type="text" id="branchID" name="branchID" class="form-control"
+                                        ng-model="wrapper.branchIDValue"  />
+                                </div>
+                            </div>
+
+                            <!--student row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="studentID">Student ID</label>
+                                    <input ng-model="wrapper.studentID" id="studentID" class="form-control" type="text"
+                                        name="studentID" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="studentName">Student Name</label>
+                                    <input ng-model="wrapper.studentName" id="studentName" class="form-control"
+                                        type="text" name="studentName" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="surname">Surname</label>
+                                    <input ng-model="wrapper.surname" id="surname" class="form-control" type="text"
+                                        name="surname" >
+                                </div>
+                            </div>
+
+                            <!--student row 3-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="gradeID">Grade</label>
+                                    <input ng-model="wrapper.gradeIDValue" id="gradeID" class="form-control" type="text"
+                                        name="gradeID" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="sectionID">Section</label>
+                                    <input ng-model="wrapper.sectionIDValue" id="sectionID" class="form-control"
+                                        type="text" name="sectionID" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="academicYearID">Academic Year</label>
+                                    <input ng-model="wrapper.academicYearIDValue" id="academicYearID"
+                                        class="form-control" type="text" name="academicYearID" >
+                                </div>
+                            </div>
+
+                            <!--student row 4-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="dob">Date of birth</label>
+                                    <input id="dob" name="dob" class="form-control" type="text" ng-model="wrapper.dob"
+                                        uib-datepicker-popup="dd/MM/yyyy" show-button-bar="false"
+                                        datepicker-options="datepicker.options" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="dobInWords">Date of birth in words</label>
+                                    <input type="text" id="dobInWords" name="dobInWords" class="form-control"
+                                        ng-model="wrapper.dobInWords"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="gender">Gender</label>
+                                    <input ng-model="wrapper.genderValue" id="gender" class="form-control" type="text"
+                                        name="gender" >
+                                </div>
+                            </div>
+
+
+                            <!--student row 5-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="joinDate">Join date</label>
+                                    <input id="joinDate" name="joinDate" class="form-control" type="text"
+                                        ng-model="wrapper.joinDate" uib-datepicker-popup="dd/MM/yyyy"
+                                        show-button-bar="false" datepicker-options="datepicker.options" >
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="studentPhotoID">Photo id</label>
+                                    <input type="text" id="studentPhotoID" name="studentPhotoID" class="form-control"
+                                        ng-model="wrapper.studentPhotoID"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="aadhaarNo">Aadhaar no</label>
+                                    <input type="text" id="aadhaarNo" name="aadhaarNo" class="form-control"
+                                        ng-model="wrapper.aadhaarNo"  />
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-----end of box one-->
+
+                    <!----second  box start-->
+                    <h4>Personal</h4>
+                    <div class="panel panel-body" match-height>
+
+                        <form class="form form-horizontal">
+
+
+                            <!--personal row 1-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="religion">Religion</label>
+                                    <input type="text" id="religion" name="religion" class="form-control"
+                                        ng-model="wrapper.religionValue"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="caste">Caste</label>
+                                    <input type="text" id="caste" name="caste" class="form-control"
+                                        ng-model="wrapper.casteValue"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="casteCategory">Caste category</label>
+                                    <input type="text" id="casteCategory" name="casteCategory" class="form-control"
+                                        ng-model="wrapper.casteCategoryValue"  />
+                                </div>
+                            </div>
+
+                            <!--personal row 2-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="physicallyChallenged">Physically Challenged</label>
+                                    <input type="text" id="physicallyChallenged" name="physicallyChallenged"
+                                        class="form-control" ng-model="wrapper.physicallyChallengedValue"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="bankAccountNo">Bank Account No</label>
+                                    <input type="text" id="bankAccountNo" name="bankAccountNo" class="form-control"
+                                        ng-model="wrapper.bankAccountNo"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="bankName">Bank Name</label>
+                                    <input type="text" id="bankName" name="bankName" class="form-control"
+                                        ng-model="wrapper.bankNameValue"  />
+                                </div>
+                            </div>
+
+
+                            <!--personal row 3-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="rationCardNo">Ration Card No</label>
+                                    <input type="text" id="rationCardNo" name="rationCardNo" class="form-control"
+                                        ng-model="wrapper.rationCardNo"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="parentAnnualIncome">Parent Annual Income</label>
+                                    <input type="text" id="parentAnnualIncome" name="parentAnnualIncome"
+                                        class="form-control" ng-model="wrapper.parentAnnualIncome"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="studentEmail">Student email</label>
+                                    <input type="text" id="studentEmail" name="studentEmail" class="form-control"
+                                        ng-model="wrapper.studentEmail"  />
+                                </div>
+                            </div>
+
+
+                            <!--personal row 4-->
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <label for="identityMark1">Identity Mark 1</label>
+                                    <input type="text" id="identityMark1" name="identityMark1" class="form-control"
+                                    ng-model="wrapper.identityMark1"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="identityMark2">Identity Mark 2</label>
+                                    <input type="text" id="identityMark2" name="identityMark2" class="form-control"
+                                    ng-model="wrapper.identityMark2"  />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="bloodGroup">Blood Group</label>
+                                    <input type="text" id="bloodGroup" name="bloodGroup" class="form-control"
+                                    ng-model="wrapper.bloodGroupValue"  />
+                                </div>
+                            </div>
+
+
+                            <!----end of personal info-->
+
+
+
+                        </form>
+                    </div>
+                    <!-------end of second box-->
+
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.layout-content-body -->
